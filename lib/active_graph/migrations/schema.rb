@@ -26,7 +26,6 @@ module ActiveGraph
         def fetch_index_descriptions
           result = ActiveGraph::Base.raw_indexes
           result.reject do |row|
-            byebug
             if row.keys.include?(:description)
               # v3 indexes
               row[:type] == 'node_unique_property'

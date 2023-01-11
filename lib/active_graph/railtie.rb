@@ -65,8 +65,8 @@ module ActiveGraph
       host = config.delete(:host) || 'localhost'
       port = config.delete(:port) || 7687
       url = config.delete(:url) || URI::Generic.build( scheme: scheme, host: host, port: port ).to_s
-      username = config.delete(:username)
-      password = config.delete(:password)
+      username = config.delete(:username) || ENV['NEO4J_USER']
+      password = config.delete(:password) || ENV['NEO4J_PASSWORD']
       auth_token = config.delete(:auth_token)
       auth_token ||= username ? Neo4j::Driver::AuthTokens.basic(username, password) : Neo4j::Driver::AuthTokens.none
       register_neo4j_cypher_logging
